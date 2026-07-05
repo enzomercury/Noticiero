@@ -131,7 +131,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
             
             <!-- COLUMNA IZQUIERDA: Crónica Escrita (8 Columnas en LG) -->
-            <article class="lg:col-span-7 space-y-8 text-lg leading-relaxed text-slate-700 dark:text-neutral-300">
+            <article id="article-content" class="lg:col-span-7 space-y-8 text-lg leading-relaxed text-slate-700 dark:text-neutral-300">
                 
                 <p class="first-letter:text-6xl first-letter:font-black first-letter:font-serif first-letter:float-left first-letter:mr-3 first-letter:text-amber-600 dark:first-letter:text-amber-500">
                     Criado en el barrio Rampla de la ciudad de Artigas, Antonio Minguta comenzó su vínculo con el fútbol jugando en los campitos de su infancia, como tantos otros niños que soñaban con llegar algún día al profesionalismo. Con el paso de los años, ese sueño dejó de ser una ilusión para convertirse en una trayectoria marcada por el esfuerzo, la disciplina y el compromiso.
@@ -141,7 +141,7 @@
                     A lo largo de su carrera defendió diferentes instituciones y protagonizó momentos que quedaron grabados en la memoria del fútbol uruguayo. Uno de ellos ocurrió el <strong>25 de agosto de 1993</strong>, cuando vistiendo la camiseta del Club Nacional de Fútbol convirtió un gol nada menos que al Real Madrid, un recuerdo que todavía conserva con orgullo por la magnitud del rival y por haber compartido el campo de juego con algunas de las grandes figuras del fútbol mundial.
                 </p>
 
-                <!-- Reproductor de Audio Simulado para la Crónica -->
+                <!-- Reproductor de Audio Real (API de Síntesis) para la Crónica -->
                 <div class="bg-gradient-to-r from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6 rounded-2xl border border-neutral-200/60 dark:border-neutral-700/60 shadow-lg relative overflow-hidden my-6">
                     <div class="absolute top-0 right-0 p-2 text-neutral-200 dark:text-neutral-700 text-6xl font-black pointer-events-none select-none">
                         AUDIO
@@ -154,13 +154,13 @@
                             <div>
                                 <span class="text-xs uppercase font-bold tracking-widest text-amber-600 dark:text-amber-400">Escuchar crónica</span>
                                 <h4 class="font-bold text-slate-900 dark:text-white">Lectura por sintetizador de voz</h4>
-                                <p class="text-xs text-neutral-500">Duración estimada: 1:12 min</p>
+                                <p class="text-xs text-neutral-500">Audio generado automáticamente</p>
                             </div>
                         </div>
                         
                         <!-- Controles de Audio y Onda de Sonido Simulada -->
                         <div class="flex-1 max-w-xs">
-                            <div class="flex items-end justify-between h-8 gap-[3px] mb-2 px-1">
+                            <div class="flex items-end justify-between h-8 gap-[3px] mb-2 px-1" id="wavesContainer">
                                 <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t" style="height: 20%" id="wave1"></div>
                                 <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t" style="height: 40%" id="wave2"></div>
                                 <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t" style="height: 80%" id="wave3"></div>
@@ -173,7 +173,7 @@
                                 <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t" style="height: 25%" id="wave10"></div>
                             </div>
                             <div class="w-full bg-neutral-200 dark:bg-neutral-700 h-1.5 rounded-full overflow-hidden">
-                                <div id="audioProgress" class="bg-amber-600 h-full w-0 transition-all duration-300"></div>
+                                <div id="audioProgress" class="bg-amber-600 h-full w-0 transition-all duration-150"></div>
                             </div>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                 <blockquote class="my-10 p-8 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 shadow-[10px_10px_0px_rgba(197,168,128,0.2)] dark:shadow-[10px_10px_0px_rgba(251,191,36,0.1)] transition-transform duration-300 hover:scale-[1.01]">
                     <i class="fa-solid fa-quote-left text-4xl text-amber-500/30 mb-2 block"></i>
                     <p class="font-serif text-xl md:text-2xl italic text-slate-800 dark:text-neutral-100 leading-relaxed font-semibold">
-                        "Aunque el fútbol le brindó experiencias inolvidables, afirma que su mayor identidad está ligada a otra vocación. Exmilitar y padre de dos hijos, sostiene que antes que futbolista se considera militar, una profesión que también definió gran parte de su vida."
+                        "Cuando uno sueña para jugar, uno tiene que importarse en eso."
                     </p>
                     <cite class="mt-4 block text-xs uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold not-italic">
                         &mdash; Reflexión de Antonio Minguta
@@ -508,40 +508,81 @@
         window.onload = function() {
             init3DTilt('matchCard');
             init3DTilt('playerCard');
+            // Cancelar cualquier síntesis de voz que haya quedado en cola si recargan
+            if(window.speechSynthesis) window.speechSynthesis.cancel();
         }
 
-        // 4. Simulación del Reproductor de Audio de la Crónica (1 min)
+        // 4. Implementación del Reproductor de Audio Real (Web Speech API)
         let isPlaying = false;
-        let audioInterval;
-        let audioProgressPercent = 0;
+        let synth = window.speechSynthesis;
+        let utterance = null;
+        let animationFrameId;
 
         function toggleSimulatedAudio() {
             const playIcon = document.getElementById('playIcon');
             const audioProgress = document.getElementById('audioProgress');
-            isPlaying = !isPlaying;
+            
+            if (!synth) {
+                alert("Tu navegador no soporta el sintetizador de voz.");
+                return;
+            }
 
-            if (isPlaying) {
+            if (!isPlaying) {
+                // REPRODUCIR / REANUDAR
+                isPlaying = true;
                 playIcon.className = 'fa-solid fa-pause';
-                // Animación de la barra de progreso de audio y las ondas
-                audioInterval = setInterval(() => {
-                    if (audioProgressPercent >= 100) {
-                        clearInterval(audioInterval);
+
+                if (!utterance) {
+                    // Extraer texto del artículo (párrafos y citas)
+                    const paragraphs = document.querySelectorAll('#article-content > p, #article-content blockquote p');
+                    const textToRead = Array.from(paragraphs).map(p => p.innerText).join('. ');
+
+                    utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = 'es-ES'; // Español
+                    utterance.rate = 1.0;
+                    
+                    utterance.onend = function() {
+                        // Reseteo visual cuando termina
                         isPlaying = false;
                         playIcon.className = 'fa-solid fa-play ml-1';
-                        audioProgressPercent = 0;
-                        audioProgress.style.width = '0%';
+                        utterance = null;
+                        audioProgress.style.width = '100%';
                         stopWaveAnimation();
-                    } else {
-                        audioProgressPercent += 1.4; // Ajustado para completar en aprox 70 segundos (1 min)
-                        audioProgress.style.width = audioProgressPercent + '%';
-                        animateWavesRandomly();
-                    }
-                }, 1000);
+                        cancelAnimationFrame(animationFrameId);
+                    };
+
+                    utterance.onboundary = function(event) {
+                        // Actualizar la barra de progreso en función de la palabra leída
+                        const percent = (event.charIndex / textToRead.length) * 100;
+                        audioProgress.style.width = percent + '%';
+                    };
+
+                    synth.speak(utterance);
+                } else {
+                    // Si ya existía y estaba pausado
+                    synth.resume();
+                }
+
+                // Iniciar animación de las ondas
+                animateWavesLoop();
+
             } else {
+                // PAUSAR
+                isPlaying = false;
                 playIcon.className = 'fa-solid fa-play ml-1';
-                clearInterval(audioInterval);
+                synth.pause();
                 stopWaveAnimation();
+                cancelAnimationFrame(animationFrameId);
             }
+        }
+
+        function animateWavesLoop() {
+            animateWavesRandomly();
+            animationFrameId = requestAnimationFrame(() => {
+                setTimeout(() => {
+                    if (isPlaying) animateWavesLoop();
+                }, 150);
+            });
         }
 
         function animateWavesRandomly() {
@@ -561,14 +602,18 @@
                 const wave = document.getElementById('wave' + i);
                 if (wave) {
                     wave.style.height = heights[i-1] + '%';
-                    wave.style.backgroundColor = ''; // Restaura tema por defecto
+                    wave.style.backgroundColor = ''; // Restaura tema por defecto (usando clases de tailwind)
                 }
             }
         }
 
+        // Cancelar el audio si se cambia de página para no dejarlo hablando de fondo
+        window.onbeforeunload = function () {
+            if(window.speechSynthesis) window.speechSynthesis.cancel();
+        };
+
         // 5. Utilidades de Compartir e Interacción
         function copyToClipboard() {
-            // Se usa el portapapeles simulado por compatibilidad en iframes
             const dummy = document.createElement('input');
             document.body.appendChild(dummy);
             dummy.value = window.location.href;
