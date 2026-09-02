@@ -3,657 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leve sismo se percibió en Artigas sin provocar daños | MercuryNoticias</title>
-    
+    <title>Antonio Minguta: del barrio Rampla al gol inolvidable frente al Real Madrid | Crónica</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        editorial: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            accent: '#991b1b', // Deep Editorial Crimson
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Newsreader', 'Georgia', 'Merriweather', 'serif'],
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['Playfair Display', 'Georgia', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Playfair Display (Serif Periodístico) & Inter (Lectura Clara) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Three.js for 3D Earth Globe -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        editorial: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            accent: '#991b1b', // Deep Editorial Crimson
-                        }
-                    },
                     fontFamily: {
-                        serif: ['Newsreader', 'Georgia', 'Merriweather', 'serif'],
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['Inter', 'system-ui', 'sans-serif'],
-                        titleSerif: ['Lora', 'Georgia', 'serif'],
-                        cinzel: ['Cinzel', 'serif'],
-                        bodoni: ['Bodoni Moda', 'Didot', 'serif'],
-                        garamond: ['Cormorant Garamond', 'serif']
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        newspaper: {
+                            light: '#FAF8F5',
+                            dark: '#121212',
+                            accent: '#1F2937',
+                            gold: '#C5A880'
+                        }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Editorial Typography & Drop Cap */
-        .drop-cap::first-letter {
-            font-size: 3.5rem;
-            float: left;
-            line-height: 0.8;
-            padding-top: 4px;
-            padding-right: 10px;
-            font-weight: 700;
-            color: #991b1b;
-            font-family: 'Bodoni Moda', serif;
+        /* Estilos de profundidad y 3D personalizados */
+        .newspaper-card {
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-
-        .dark .drop-cap::first-letter {
-            color: #f87171;
+        .newspaper-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(197, 168, 128, 0.25);
         }
-
-        /* Clean Video Container Aspect Ratio */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
+        /* Efecto 3D Realista de Perspectiva */
+        .tilt-container {
+            perspective: 1000px;
         }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
         }
-
-        /* Logo Typography Style Variations */
-        .logo-bodoni { font-family: 'Bodoni Moda', serif; }
-        .logo-cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.08em; }
-        .logo-garamond { font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+        /* Efecto de luz de lectura */
+        .reading-gradient {
+            background: linear-gradient(180deg, rgba(250,248,245,0) 0%, rgba(250,248,245,1) 90%);
+        }
+        .dark .reading-gradient {
+            background: linear-gradient(180deg, rgba(18,18,18,0) 0%, rgba(18,18,18,1) 90%);
+        }
     </style>
 </head>
-<body class="bg-stone-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-serif transition-colors duration-200 antialiased selection:bg-red-900 selection:text-white min-h-screen flex flex-col">
+<body class="bg-[#FAF8F5] text-slate-800 font-sans transition-colors duration-300 dark:bg-[#121212] dark:text-gray-100 selection:bg-amber-100 dark:selection:bg-amber-900/40">
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 px-4 py-2.5 rounded-lg shadow-xl flex items-center space-x-2 text-xs font-sans pointer-events-none border border-zinc-700">
-        <i class="fa-solid fa-circle-check text-green-500"></i>
-        <span id="toast-message">Enlace copiado</span>
-    </div>
+    <!-- Barra de progreso de lectura superior -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1 bg-amber-600 z-50 transition-all duration-100" style="width: 0%"></div>
 
-    <!-- Newspaper Top Bar -->
-    <div class="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-sans transition-colors">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center text-zinc-500 dark:text-zinc-400">
-            <div class="flex items-center space-x-4">
-                <span id="current-date" class="font-medium">Viernes, 14 de Agosto de 2026</span>
-                <span class="hidden sm:inline-block text-zinc-300 dark:text-zinc-700">|</span>
-                <span class="hidden sm:inline-block">Artigas, Uruguay</span>
+    <!-- Menú de navegación flotante / Header de Diario -->
+    <header class="border-b border-neutral-200 dark:border-neutral-800 bg-[#FAF8F5]/90 dark:bg-[#121212]/90 backdrop-blur sticky top-0 z-40 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="font-serif text-2xl font-black tracking-tighter uppercase dark:text-white">
+                    El <span class="text-amber-600 dark:text-amber-500">Cronista</span> Digital
+                </span>
+                <span class="hidden md:inline-block h-4 w-[1px] bg-neutral-300 dark:bg-neutral-700"></span>
+                <span class="hidden md:inline-block text-xs uppercase tracking-widest text-neutral-500 font-semibold">
+                    EDICIÓN ESPECIAL
+                </span>
             </div>
             
-            <div class="flex items-center space-x-3">
-                <!-- Title Font Switcher -->
-                <div class="flex items-center space-x-1 border-r border-zinc-200 dark:border-zinc-800 pr-3">
-                    <span class="text-[10px] uppercase font-bold text-zinc-400 mr-1 hidden md:inline">Tipografía Título:</span>
-                    <button onclick="cycleTitleFont()" class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 font-medium text-[11px] transition text-zinc-700 dark:text-zinc-300 flex items-center gap-1" title="Cambiar fuente del título">
-                        <i class="fa-solid fa-heading text-[10px]"></i>
-                        <span id="title-font-label">Sans (Inter)</span>
-                    </button>
-                </div>
-
-                <!-- Logo Font Style Selector Button -->
-                <div class="flex items-center space-x-1 border-r border-zinc-200 dark:border-zinc-800 pr-3">
-                    <span class="text-[10px] uppercase font-bold text-zinc-400 mr-1 hidden md:inline">Logo Tipografía:</span>
-                    <button onclick="cycleLogoFont()" class="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 font-medium text-[11px] transition text-zinc-700 dark:text-zinc-300 flex items-center gap-1" title="Cambiar diseño del logo">
-                        <i class="fa-solid fa-font text-[10px]"></i>
-                        <span id="logo-font-label">Bodoni</span>
-                    </button>
-                </div>
-                <!-- Text Size Adjuster -->
-                <div class="flex items-center space-x-1 border-r border-zinc-200 dark:border-zinc-800 pr-3">
-                    <button onclick="changeFontSize(-1)" class="px-1.5 py-0.5 hover:text-zinc-900 dark:hover:text-white font-bold" title="Reducir texto">A-</button>
-                    <button onclick="changeFontSize(1)" class="px-1.5 py-0.5 hover:text-zinc-900 dark:hover:text-white font-bold" title="Aumentar texto">A+</button>
-                </div>
-                <!-- Dark Mode Toggle -->
-                <button id="theme-toggle" class="p-1 hover:text-zinc-900 dark:hover:text-white transition" title="Cambiar tema">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+            <div class="flex items-center space-x-4">
+                <!-- Temas/Modos de color -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600 dark:text-gray-300" title="Cambiar tema">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
                 </button>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Editorial Masthead Header with Redesigned Logo & Crest -->
-    <header class="border-b-2 border-zinc-900 dark:border-zinc-100 bg-white dark:bg-zinc-900 transition-colors">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-center">
-            
-            <a href="#" class="inline-flex flex-col items-center group">
-                <!-- SVG Press Monogram Seal -->
-                <div class="mb-3 relative flex items-center justify-center">
-                    <svg class="w-10 h-10 text-red-800 dark:text-red-500 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2.5" stroke-dasharray="1 3" />
-                        <circle cx="50" cy="50" r="41" stroke="currentColor" stroke-width="1.5" />
-                        <!-- Winged Mercury Winged Quill M Crest -->
-                        <path d="M32 68 V32 L50 56 L68 32 V68" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 42 C 30 38, 38 42, 42 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M78 42 C 70 38, 62 42, 58 34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="50" cy="24" r="3" fill="currentColor"/>
-                    </svg>
+    <!-- Hero / Portada del Artículo -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+        <div class="text-center max-w-4xl mx-auto mb-10">
+            <!-- Categoría y Badge de Tiempos -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                <span class="text-xs uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold px-3 py-1 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-full">
+                    Crónica & Retratos
+                </span>
+                <span class="text-xs text-neutral-500 flex items-center gap-1.5" title="Tiempo de lectura de la crónica">
+                    <i class="fa-regular fa-clock"></i> Lectura: 1 min
+                </span>
+                <span class="text-xs text-neutral-500 flex items-center gap-1.5" title="Duración de la video-nota">
+                    <i class="fa-regular fa-circle-play text-red-500"></i> Video: 4 min
+                </span>
+            </div>
+
+            <!-- Título Principal -->
+            <h1 id="articleTitle" class="font-serif text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6 text-slate-900 dark:text-white">
+                Antonio Minguta: del barrio Rampla al gol inolvidable frente al Real Madrid
+            </h1>
+
+            <!-- Copete -->
+            <p id="articleCopete" class="font-serif text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-neutral-300 leading-relaxed max-w-3xl mx-auto italic mb-8 border-l-4 border-amber-500 pl-4 text-left">
+                Exfutbolista, militar y padre de familia, Antonio Minguta repasó su historia de vida en una entrevista donde recordó sus inicios en Artigas, el histórico gol que le convirtió al Real Madrid, los desafíos de su carrera y el mensaje que hoy transmite a las nuevas generaciones: perseguir los sueños con esfuerzo, humildad y perseverancia.
+            </p>
+
+            <!-- Datos de Autoría -->
+            <div class="flex items-center justify-center space-x-4 border-t border-b border-neutral-200 dark:border-neutral-800 py-4 max-w-lg mx-auto">
+                <div class="w-12 h-12 rounded-full bg-amber-600 flex items-center justify-center text-white font-bold text-sm shadow-lg border-2 border-white dark:border-neutral-900">
+                    FN/ER
                 </div>
-
-                <!-- Main Newspaper Name with Dynamic Font Class -->
-                <h1 id="main-logo-text" class="logo-bodoni text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white uppercase leading-none transition-all">
-                    MERCURY<span class="font-light italic text-red-800 dark:text-red-500 ml-1.5">NOTICIAS</span>
-                </h1>
-            </a>
-
-            <!-- Subtitle Banner with Editorial Accent Lines -->
-            <div class="mt-4 flex items-center justify-center space-x-3 text-[11px] sm:text-xs font-sans uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
-                <span class="h-px w-8 sm:w-16 bg-zinc-300 dark:bg-zinc-700"></span>
-                <span class="font-medium">Periodismo Independiente &bull; Edición Digital</span>
-                <span class="h-px w-8 sm:w-16 bg-zinc-300 dark:bg-zinc-700"></span>
+                <div class="text-left">
+                    <p class="text-xs text-neutral-400 uppercase tracking-widest font-semibold">Autoría y Redacción</p>
+                    <p class="text-base font-bold text-slate-900 dark:text-white">Fiorela Negro y Enzo Román</p>
+                    <p class="text-xs text-neutral-500">Medios Digitales &bull; Especial de Deportes</p>
+                </div>
             </div>
         </div>
 
-        <!-- Sub-Navigation Menu -->
-        <nav class="border-t border-zinc-200 dark:border-zinc-800 font-sans text-xs uppercase tracking-wider hidden md:block">
-            <div class="max-w-6xl mx-auto px-4 flex justify-center space-x-8 py-2.5 text-zinc-600 dark:text-zinc-400">
-                <a href="#" class="hover:text-red-800 dark:hover:text-red-400 transition">Portada</a>
-                <a href="#" class="text-red-800 dark:text-red-400 font-bold">Sociedad</a>
-                <a href="#" class="hover:text-red-800 dark:hover:text-red-400 transition">Nacional</a>
-                <a href="#" class="hover:text-red-800 dark:hover:text-red-400 transition">Ciencia & Geofísica</a>
-                <a href="#" class="hover:text-red-800 dark:hover:text-red-400 transition">Internacional</a>
-                <a href="#" class="hover:text-red-800 dark:hover:text-red-400 transition">Opinión</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Content Container -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-grow space-y-8">
-
-        <!-- Article Header Section -->
-        <article class="space-y-6">
+        <!-- Contenido principal y barra lateral interactiva -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
             
-            <!-- Category & Metadata -->
-            <div class="flex items-center space-x-3 text-xs font-sans uppercase tracking-widest text-red-800 dark:text-red-400 font-bold border-b border-zinc-200 dark:border-zinc-800 pb-2">
-                <span>SOCIEDAD / SISMOLOGÍA</span>
-                <span>&bull;</span>
-                <span class="text-zinc-500 font-normal">ARTIGAS</span>
-            </div>
-
-            <!-- Title -->
-            <h1 id="article-title" class="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold leading-[1.18] text-zinc-900 dark:text-white tracking-tight">
-                Leve sismo se percibió en Artigas sin provocar daños
-            </h1>
-
-            <!-- Author & Share Info Bar -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-y border-zinc-200 dark:border-zinc-800 font-sans text-xs text-zinc-600 dark:text-zinc-400 gap-3">
-                <div class="flex items-center space-x-2">
-                    <span class="font-bold text-zinc-900 dark:text-zinc-200 uppercase">Redacción:</span>
-                    <span class="font-semibold text-zinc-800 dark:text-zinc-300">Enzo Román</span>
-                    <span class="text-zinc-400">&bull;</span>
-                    <span>14 de Agosto, 2026</span>
-                </div>
-
-                <!-- Text-to-Speech & Share Actions -->
-                <div class="flex items-center space-x-4">
-                    <button id="tts-btn" onclick="toggleTextToSpeech()" class="flex items-center space-x-1.5 text-zinc-700 dark:text-zinc-300 hover:text-red-800 dark:hover:text-red-400 transition">
-                        <i id="tts-icon" class="fa-solid fa-volume-high"></i>
-                        <span id="tts-label">Escuchar</span>
-                    </button>
-                    <span class="text-zinc-300 dark:text-zinc-700">|</span>
-                    <button onclick="shareWhatsApp()" title="Compartir por WhatsApp" class="hover:text-green-600 transition">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                    </button>
-                    <button onclick="shareTwitter()" title="Compartir en X" class="hover:text-sky-500 transition">
-                        <i class="fa-brands fa-x-twitter text-sm"></i>
-                    </button>
-                    <button onclick="copyArticleLink()" title="Copiar Enlace" class="hover:text-zinc-900 dark:hover:text-white transition">
-                        <i class="fa-solid fa-link text-sm"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Copete (Lead Paragraph) -->
-            <div id="copete-text" class="text-lg sm:text-xl md:text-2xl font-serif leading-relaxed text-zinc-800 dark:text-zinc-200 italic font-normal border-l-2 border-red-800 dark:border-red-500 pl-4 py-1">
-                Un sismo de magnitud 3,0 registrado en la mañana de este viernes a 12 kilómetros al suroeste de la ciudad de Artigas. Fue percibido por vecinos de distintos barrios y también en la ciudad brasileña de Quaraí. Las autoridades confirmaron que no se registraron daños materiales, personas lesionadas ni interrupciones en los servicios públicos, mientras desmintieron rumores que circularon en redes sociales.
-            </div>
-
-            <!-- Video Section (Directly after Copete) -->
-            <figure class="my-8">
-                <div class="video-container rounded-sm overflow-hidden bg-black shadow-md border border-zinc-200 dark:border-zinc-800">
-                    <iframe 
-                        src="https://www.youtube.com/embed/dj40C9Bh6X4" 
-                        title="Sismo en Artigas - Reporte de Video" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <figcaption class="mt-2 text-xs font-sans text-zinc-500 dark:text-zinc-400 text-center italic">
-                    Cobertura audiovisual del microsismo registrado en el departamento de Artigas y frontera norte.
-                </figcaption>
-            </figure>
-
-            <!-- Article Body (Desarrollo) -->
-            <div id="article-body" class="space-y-6 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-serif">
+            <!-- COLUMNA IZQUIERDA: Crónica Escrita (8 Columnas en LG) -->
+            <article class="lg:col-span-7 space-y-8 text-lg leading-relaxed text-slate-700 dark:text-neutral-300">
                 
-                <p class="drop-cap">
-                    La jornada comenzó con sorpresa para los habitantes de Artigas cuando, sobre las 06:12 horas, numerosos vecinos reportaron una fuerte vibración acompañada de un estruendo que duró apenas unos segundos. Minutos después, la Jefatura de Policía recibió decenas de llamadas de personas que aseguraban haber sentido el movimiento.
+                <p class="article-paragraph first-letter:text-6xl first-letter:font-black first-letter:font-serif first-letter:float-left first-letter:mr-3 first-letter:text-amber-600 dark:first-letter:text-amber-500">
+                    Criado en el barrio Rampla de la ciudad de Artigas, Antonio Minguta comenzó su vínculo con el fútbol jugando en los campitos de su infancia, como tantos otros niños que soñaban con llegar algún día al profesionalismo. Con el paso de los años, ese sueño dejó de ser una ilusión para convertirse en una trayectoria marcada por el esfuerzo, la disciplina y el compromiso.
                 </p>
 
-                <p>
-                    Ante la situación, Bomberos y Policía realizaron recorridas preventivas por distintos barrios de la ciudad. Tras las inspecciones, las autoridades informaron que no se constataron grietas, derrumbes ni otros daños en viviendas o edificios, y que tampoco hubo personas heridas.
+                <p class="article-paragraph">
+                    A lo largo de su carrera defendió diferentes instituciones y protagonizó momentos que quedaron grabados en la memoria del fútbol uruguayo. Uno de ellos ocurrió el 25 de agosto de 1993, cuando vistiendo la camiseta del Club Nacional de Fútbol convirtió un gol nada menos que al Real Madrid, un recuerdo que todavía conserva con orgullo por la magnitud del rival y por haber compartido el campo de juego con algunas de las grandes figuras del fútbol mundial.
                 </p>
 
-                <!-- Editorial Quote Block -->
-                <blockquote class="my-8 p-6 bg-zinc-100 dark:bg-zinc-900 border-l-4 border-red-800 dark:border-red-500 text-zinc-900 dark:text-zinc-100 font-serif italic rounded-r-md">
-                    <p class="text-lg sm:text-xl leading-relaxed">
-                        “Recibimos decenas de llamados de vecinos alarmados. Recorrimos los barrios Pintadito, Rampla y centro: no hay ningún edificio afectado, no hay derrumbes ni personas lesionadas. La situación es de absoluta normalidad”
+                <!-- Reproductor de Audio Real (Sintetizador de Voz API) -->
+                <div class="bg-gradient-to-r from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-6 rounded-2xl border border-neutral-200/60 dark:border-neutral-700/60 shadow-lg relative overflow-hidden my-6">
+                    <div class="absolute top-0 right-0 p-2 text-neutral-200 dark:text-neutral-700 text-6xl font-black pointer-events-none select-none">
+                        AUDIO
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <button id="playAudioBtn" onclick="toggleAudio()" class="w-14 h-14 bg-amber-600 hover:bg-amber-700 text-white rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-95 text-xl flex-shrink-0">
+                                <i id="playIcon" class="fa-solid fa-play ml-1"></i>
+                            </button>
+                            <div>
+                                <span class="text-xs uppercase font-bold tracking-widest text-amber-600 dark:text-amber-400">Escuchar crónica</span>
+                                <h4 class="font-bold text-slate-900 dark:text-white leading-tight" id="audioStatusTitle">Narración por voz asistida</h4>
+                                <p class="text-xs text-neutral-500" id="audioEstimatedLabel">Duración aproximada: 1 min</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Controles de Audio y Onda de Sonido Sincronizada -->
+                        <div class="flex-1 w-full md:max-w-xs mt-2 md:mt-0">
+                            <div class="flex items-end justify-between h-8 gap-[3px] mb-2 px-1">
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 20%" id="wave1"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 40%" id="wave2"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 80%" id="wave3"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 50%" id="wave4"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 90%" id="wave5"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 30%" id="wave6"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 70%" id="wave7"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 40%" id="wave8"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 85%" id="wave9"></div>
+                                <div class="bg-amber-600/30 dark:bg-amber-500/20 w-full rounded-t transition-all duration-150" style="height: 25%" id="wave10"></div>
+                            </div>
+                            <div class="w-full bg-neutral-200 dark:bg-neutral-700 h-1.5 rounded-full overflow-hidden relative">
+                                <div id="audioProgress" class="absolute top-0 left-0 bg-amber-600 h-full w-0 transition-all duration-300"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="article-paragraph">
+                    Su recorrido deportivo también lo llevó a defender los colores de Frontera Rivera Chico, donde volvió a marcarle a Nacional en una liguilla prelibertadores, y a Tacuarembó, equipo con el que eliminó a Artigas en una Copa Litoral, un episodio que recuerda con sentimientos encontrados por el vínculo que siempre mantuvo con su ciudad natal.
+                </p>
+
+                <!-- Gran Cita / Pull Quote en 3D -->
+                <blockquote class="my-10 p-8 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800 shadow-[10px_10px_0px_rgba(197,168,128,0.2)] dark:shadow-[10px_10px_0px_rgba(251,191,36,0.1)] transition-transform duration-300 hover:scale-[1.01]">
+                    <i class="fa-solid fa-quote-left text-4xl text-amber-500/30 mb-2 block"></i>
+                    <p class="article-paragraph font-serif text-xl md:text-2xl italic text-slate-800 dark:text-neutral-100 leading-relaxed font-semibold">
+                        Aunque el fútbol le brindó experiencias inolvidables, Minguta afirma que su mayor identidad está ligada a otra vocación. Exmilitar y padre de dos hijos, sostiene que antes que futbolista se considera militar, una profesión que también definió gran parte de su vida.
                     </p>
-                    <footer class="mt-3 text-xs font-sans uppercase tracking-wider text-zinc-500 font-bold not-italic">
-                        — Jefe de Bomberos de Artigas
-                    </footer>
+                    <cite class="mt-4 block text-xs uppercase tracking-widest text-amber-600 dark:text-amber-400 font-bold not-italic">
+                        &mdash; Reflexión de Antonio Minguta
+                    </cite>
                 </blockquote>
 
-                <p>
-                    A las 8:15 el Observatorio Geofísico del Uruguay emitió su informe técnico oficial, en el que confirmó que el evento alcanzó una magnitud de 3,0 en la escala de Richter, con epicentro ubicado a 12 kilómetros al suroeste de Artigas y una profundidad aproximada de 4 kilómetros. El organismo explicó que se trató de un microsismo intraplaca de baja intensidad, sin riesgo para la población ni para la infraestructura.
+                <p class="article-paragraph">
+                    Durante la entrevista compartió además un mensaje dirigido a niños y jóvenes que sueñan con llegar al fútbol profesional. Para él, el camino hacia las grandes oportunidades se construye con sacrificio, humildad y constancia, sin dejar nunca de creer en los propios sueños.
                 </p>
 
-                <p>
-                    Por su parte, el Centro Coordinador de Emergencias Departamentales (CECOED) informó que los servicios de agua, energía eléctrica y telefonía funcionan con total normalidad y que el Puente Internacional de la Concordia permaneció operativo sin restricciones.
+                <p class="article-paragraph">
+                    Más allá de los goles, los partidos y los resultados, la historia de Antonio Minguta refleja el recorrido de un artiguense que, partiendo desde un barrio humilde, logró cumplir uno de los mayores anhelos de cualquier futbolista y hoy continúa inspirando a nuevas generaciones con su experiencia de vida.
                 </p>
 
-                <p>
-                    Durante la mañana también circularon publicaciones en redes sociales y cadenas de WhatsApp que advertían sobre supuestos derrumbes, personas atrapadas y una inminente réplica de gran magnitud. Sin embargo, las autoridades descartaron estas versiones y recordaron que no existe evidencia científica que permita predecir con exactitud un sismo. Además, señalaron que un río de llanura como el Cuareim no puede generar un tsunami a partir de un evento de estas características.
-                </p>
+                <!-- TARJETA INTERACTIVA 3D: Nacional vs Real Madrid -->
+                <div class="tilt-container my-12">
+                    <div id="matchCard" class="tilt-card bg-neutral-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-neutral-800 cursor-pointer transform transition-transform duration-200">
+                        <!-- Destello de fondo -->
+                        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -left-20 -top-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            </div>
+                        <!-- Header de la tarjeta de partido -->
+                        <div class="flex justify-between items-center border-b border-neutral-800 pb-4 mb-6">
+                            <span class="text-xs uppercase tracking-widest text-amber-500 font-extrabold flex items-center gap-1.5">
+                                <i class="fa-solid fa-trophy"></i> Copa "Declaratoria de la Independencia"
+                            </span>
+                            <span class="text-xs text-neutral-400">25 de Agosto, 1993</span>
+                        </div>
 
-        </article>
+                        <!-- Marcador / Versus -->
+                        <div class="grid grid-cols-3 items-center text-center my-6">
+                            <!-- Local: Nacional -->
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 bg-blue-900 rounded-2xl flex items-center justify-center font-black text-2xl border-2 border-blue-500/50 shadow-lg mb-2">
+                                    CNF
+                                </div>
+                                <span class="font-bold text-sm sm:text-base">Nacional</span>
+                                <span class="text-xs text-neutral-400">Uruguay</span>
+                            </div>
 
-        <!-- Minimalist Interactive 3D Epicenter Section -->
-        <section class="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 font-sans">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xs uppercase tracking-widest font-bold text-zinc-500 dark:text-zinc-400">
-                    <i class="fa-solid fa-earth-americas mr-1.5 text-red-800 dark:text-red-500"></i>
-                    Ubicación 3D del Epicentro
-                </h3>
-                <span class="text-xs text-zinc-400">30.62° S, 56.46° W</span>
-            </div>
+                            <!-- Score -->
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="text-4xl sm:text-5xl font-black tracking-widest text-white mb-1">2 - 2</div>
+                                <span class="text-[10px] uppercase tracking-widest text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded-full">Finalizado</span>
+                            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-white dark:bg-zinc-900 p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-sm">
+                            <!-- Visitante: Real Madrid -->
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 bg-white text-slate-950 rounded-2xl flex items-center justify-center font-black text-2xl border-2 border-neutral-300 shadow-lg mb-2">
+                                    RMC
+                                </div>
+                                <span class="font-bold text-sm sm:text-base">Real Madrid</span>
+                                <span class="text-xs text-neutral-400">España</span>
+                            </div>
+                        </div>
+
+                        <!-- Goleadores de la Jornada Real -->
+                        <div class="grid grid-cols-2 gap-4 text-xs border-t border-neutral-800 pt-4 mb-6">
+                            <div class="text-left text-neutral-300">
+                                <p class="font-bold text-amber-500 flex items-center gap-1">
+                                    <i class="fa-regular fa-futbol"></i> A. Minguta 34'
+                                </p>
+                                <p class="text-neutral-400">A. Vidal González 82'</p>
+                            </div>
+                            <div class="text-right text-neutral-300">
+                                <p class="text-neutral-400">Alfonso 9'</p>
+                                <p class="text-neutral-400">F. Hierro 74'</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalles Técnicos desplegables / Informativos -->
+                        <div class="bg-neutral-950/80 p-4 rounded-xl border border-neutral-800/80 text-xs text-neutral-400 space-y-2">
+                            <p class="flex justify-between"><span><i class="fa-solid fa-location-dot mr-1"></i> Estadio:</span> <strong class="text-white">Estadio Centenario, Montevideo</strong></p>
+                            <p class="flex justify-between"><span><i class="fa-solid fa-users mr-1"></i> Público:</span> <strong class="text-white">~18,000 espectadores</strong></p>
+                            <p class="flex justify-between"><span><i class="fa-solid fa-gavel mr-1"></i> Juez Principal:</span> <strong class="text-white">Julio Matto</strong></p>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-neutral-400 mt-2">
+                        <i class="fa-solid fa-arrows-spin mr-1"></i> Pasa el mouse para inclinar en 3D
+                    </p>
+                </div>
+
+            </article>
+
+            <!-- COLUMNA DERECHA: Video e interactivos secundarios (5 Columnas en LG) -->
+            <aside class="lg:col-span-5 space-y-10">
                 
-                <!-- 3D Globe Container -->
-                <div class="md:col-span-2 relative h-64 w-full bg-zinc-950 rounded-md overflow-hidden">
-                    <canvas id="globe-canvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
-                    <div class="absolute bottom-2 left-2 bg-zinc-900/80 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] text-zinc-300 border border-zinc-700">
-                        Arrastre para girar la esfera
+                <!-- SECCIÓN VIDEO: El Reportaje Visual -->
+                <div class="bg-white dark:bg-neutral-900 rounded-3xl p-6 border border-neutral-200/60 dark:border-neutral-800/60 shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
+                    
+                    <div class="flex items-center space-x-2.5 mb-4">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+                        <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">
+                            Entrevista Audiovisual
+                        </h3>
+                    </div>
+
+                    <!-- Iframe de YouTube con wrapper premium de bordes 3D -->
+                    <div class="relative rounded-2xl overflow-hidden bg-neutral-900 aspect-video shadow-2xl group border-2 border-neutral-100 dark:border-neutral-800">
+                        <iframe 
+                            class="absolute inset-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/x1g5zHws4rc" 
+                            title="Entrevista a Antonio Minguta" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <!-- Datos y Metadatos de la Entrevista -->
+                    <div class="mt-4 space-y-3">
+                        <div class="flex items-center justify-between text-xs text-neutral-500 border-b border-neutral-100 dark:border-neutral-800 pb-2">
+                            <span>Duración: 4 minutos</span>
+                            <span>Formato: Digital HD</span>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-neutral-300 italic">
+                            "Repasando la trayectoria, las raíces de Artigas y aquel inolvidable 1993 donde se cruzaron los caminos con el titán de Europa."
+                        </p>
                     </div>
                 </div>
 
-                <!-- Technical Fact Sheet -->
-                <div class="space-y-3 text-xs text-zinc-600 dark:text-zinc-300">
-                    <div class="border-b border-zinc-100 dark:border-zinc-800 pb-2">
-                        <span class="block text-zinc-400 text-[10px] uppercase">Magnitud</span>
-                        <span class="text-lg font-bold text-red-800 dark:text-red-400">3.0 Richter</span>
-                    </div>
-                    <div class="border-b border-zinc-100 dark:border-zinc-800 pb-2">
-                        <span class="block text-zinc-400 text-[10px] uppercase">Profundidad</span>
-                        <span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">~ 4.0 Km</span>
-                    </div>
-                    <div class="border-b border-zinc-100 dark:border-zinc-800 pb-2">
-                        <span class="block text-zinc-400 text-[10px] uppercase">Epicentro</span>
-                        <span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">12 km SW de Artigas</span>
-                    </div>
-                    <div>
-                        <span class="block text-zinc-400 text-[10px] uppercase">Clasificación</span>
-                        <span class="text-xs font-medium text-emerald-600 dark:text-emerald-400">Microsismo Intraplaca</span>
+                <!-- FICHA TÉCNICA 3D: Cromo de Coleccionista del Jugador -->
+                <div class="tilt-container">
+                    <div id="playerCard" class="tilt-card bg-gradient-to-b from-[#1F2937] to-[#111827] text-white rounded-3xl p-6 shadow-2xl relative border-2 border-amber-600/30 overflow-hidden cursor-pointer transform transition-transform duration-200">
+                        <!-- Holograma y efectos visuales -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-amber-500/5 to-transparent pointer-events-none"></div>
+                        <div class="absolute right-4 top-4 font-serif text-7xl font-extrabold text-neutral-800/40 pointer-events-none select-none">
+                            18
+                        </div>
+
+                        <div class="flex items-center space-x-4 mb-6">
+                            <!-- Silueta / Escudo -->
+                            <div class="w-16 h-16 rounded-2xl bg-amber-600 flex items-center justify-center shadow-lg border border-amber-400">
+                                <i class="fa-solid fa-shirt text-3xl text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold text-amber-400">Ficha Histórica</h4>
+                                <h3 class="font-serif text-2xl font-black text-white">A. Minguta</h3>
+                                <p class="text-xs text-neutral-400">Volante Ofensivo / Centrocampista</p>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas Estilo Tarjeta de Fútbol -->
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+                                <span class="text-neutral-400">Fecha de Nacimiento:</span>
+                                <span class="font-semibold text-white">28/08/1971</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+                                <span class="text-neutral-400">Origen:</span>
+                                <span class="font-semibold text-white">Artigas, Uruguay</span>
+                            </div>
+                            <div class="flex justify-between border-b border-neutral-800 pb-1.5">
+                                <span class="text-neutral-400">Clubes Destacados:</span>
+                                <span class="font-semibold text-white text-right text-xs">Nacional, Tacuarembó, Frontera Rivera Chico</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-400">Hito Máximo:</span>
+                                <span class="font-semibold text-amber-400 text-right text-xs">Gol al Real Madrid (1993)</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini gráfico interactivo de habilidades estimadas -->
+                        <div class="mt-6 pt-4 border-t border-neutral-800">
+                            <span class="text-xs uppercase tracking-widest text-amber-500 font-bold block mb-3">Atributos Clave</span>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div>
+                                    <div class="flex justify-between text-[10px] text-neutral-400 mb-1">
+                                        <span>Disciplina Militar</span>
+                                        <span>99%</span>
+                                    </div>
+                                    <div class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full w-[99%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[10px] text-neutral-400 mb-1">
+                                        <span>Esfuerzo y Sacrificio</span>
+                                        <span>95%</span>
+                                    </div>
+                                    <div class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full w-[95%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[10px] text-neutral-400 mb-1">
+                                        <span>Humildad</span>
+                                        <span>100%</span>
+                                    </div>
+                                    <div class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden">
+                                        <div class="bg-emerald-500 h-full w-[100%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[10px] text-neutral-400 mb-1">
+                                        <span>Goles de Antología</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="w-full bg-neutral-800 h-1 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full w-[90%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-        </section>
+                <!-- SECCIÓN DE COMENTARIOS / REDES -->
+                <div class="bg-white dark:bg-neutral-900 rounded-3xl p-6 border border-neutral-200/60 dark:border-neutral-800/60 shadow-xl space-y-4">
+                    <h4 class="font-serif text-lg font-bold text-slate-900 dark:text-white">Compartir Artículo</h4>
+                    <div class="flex gap-2">
+                        <button onclick="simulateShare('Twitter')" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white py-2 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-sky-500/10">
+                            <i class="fa-brands fa-twitter"></i> Twitter
+                        </button>
+                        <button onclick="simulateShare('Facebook')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/10">
+                            <i class="fa-brands fa-facebook"></i> Facebook
+                        </button>
+                        <button onclick="copyToClipboard()" class="flex-1 bg-neutral-800 hover:bg-neutral-900 text-white py-2 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-md">
+                            <i class="fa-regular fa-copy"></i> Copiar Link
+                        </button>
+                    </div>
+                    <p id="shareFeedback" class="text-xs text-center text-emerald-600 dark:text-emerald-400 h-4 font-semibold transition-opacity opacity-0"></p>
+                </div>
 
+            </aside>
+        </div>
     </main>
 
-    <!-- Minimalist Editorial Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 font-sans text-xs text-zinc-500 py-8 transition-colors">
-        <div class="max-w-4xl mx-auto px-4 text-center space-y-3">
-            <p id="footer-logo-text" class="logo-bodoni font-bold text-lg text-zinc-800 dark:text-zinc-200 uppercase tracking-tight">
-                MERCURY<span class="text-red-800 dark:text-red-500 font-light italic">NOTICIAS</span>
-            </p>
-            <p class="text-zinc-400">
-                Redacción a cargo de <strong class="text-zinc-700 dark:text-zinc-300">Enzo Román</strong> &bull; Noticia para GitHub Pages
-            </p>
-            <p class="text-[11px] text-zinc-400">
-                &copy; 2026 MercuryNoticias. Todos los derechos reservados.
-            </p>
+    <!-- PIE DE PÁGINA EDITORIAL -->
+    <footer class="bg-white dark:bg-[#181818] border-t border-neutral-200 dark:border-neutral-800 mt-20 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+                <div>
+                    <h3 class="font-serif text-xl font-black uppercase dark:text-white">
+                        El <span class="text-amber-600 dark:text-amber-500">Cronista</span> Digital
+                    </h3>
+                    <p class="text-xs text-neutral-500 mt-2">
+                        Trabajo práctico de periodismo y maquetación web.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-sm text-neutral-500">
+                        &copy; 2026. Todos los derechos reservados.
+                    </p>
+                    <p class="text-xs text-amber-600 dark:text-amber-400 font-bold mt-1">
+                        Autoría del artículo: Fiorela Negro y Enzo Román
+                    </p>
+                </div>
+
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <span class="text-xs text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-3 py-1.5 rounded-full font-bold">
+                        Medios Digitales
+                    </span>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts Interactivos -->
     <script>
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
+        // 1. Manejo del Dark Mode / Modo Nocturno
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('themeIcon');
+            if (isDark) {
+                icon.className = 'fa-solid fa-sun text-lg text-amber-400';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = 'fa-solid fa-moon text-lg text-neutral-600';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const icon = document.getElementById('themeIcon');
+            if(icon) icon.className = 'fa-solid fa-sun text-lg text-amber-400';
+        }
+
+        // 2. Indicador de lectura superior
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
         });
 
-        // Title Font Switcher Logic
-        const titleFonts = [
-            { class: 'font-sans', label: 'Sans (Inter)' },
-            { class: 'font-titleSerif', label: 'Lora (Serif Limpio)' },
-            { class: 'font-serif', label: 'Newsreader' }
-        ];
-        let currentTitleFontIndex = 0;
+        // 3. Efectos de Inclinación 3D (Tilt) para Tarjetas
+        function init3DTilt(elementId) {
+            const card = document.getElementById(elementId);
+            if (!card) return;
 
-        function cycleTitleFont() {
-            const articleTitle = document.getElementById('article-title');
-            if (!articleTitle) return;
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;  
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((centerY - y) / centerY) * 12;
+                const rotateY = ((x - centerX) / centerX) * 12;
 
-            titleFonts.forEach(f => articleTitle.classList.remove(f.class));
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+            });
 
-            currentTitleFontIndex = (currentTitleFontIndex + 1) % titleFonts.length;
-
-            const newFont = titleFonts[currentTitleFontIndex];
-            articleTitle.classList.add(newFont.class);
-
-            const label = document.getElementById('title-font-label');
-            if (label) label.textContent = newFont.label;
-
-            showToast(`Título: ${newFont.label}`);
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
         }
 
-        // Logo Font Switcher Logic
-        const logoFonts = [
-            { id: 'logo-bodoni', label: 'Bodoni' },
-            { id: 'logo-cinzel', label: 'Cinzel' },
-            { id: 'logo-garamond', label: 'Garamond' }
-        ];
-        let currentLogoFontIndex = 0;
-
-        function cycleLogoFont() {
-            const mainLogo = document.getElementById('main-logo-text');
-            const footerLogo = document.getElementById('footer-logo-text');
-            const fontLabel = document.getElementById('logo-font-label');
-
-            // Remove previous font class
-            const oldClass = logoFonts[currentLogoFontIndex].id;
-            mainLogo.classList.remove(oldClass);
-            if (footerLogo) footerLogo.classList.remove(oldClass);
-
-            // Increment index
-            currentLogoFontIndex = (currentLogoFontIndex + 1) % logoFonts.length;
-
-            // Apply new font class
-            const newFont = logoFonts[currentLogoFontIndex];
-            mainLogo.classList.add(newFont.id);
-            if (footerLogo) footerLogo.classList.add(newFont.id);
-            fontLabel.textContent = newFont.label;
-
-            showToast(`Tipografía: ${newFont.label}`);
+        window.onload = function() {
+            init3DTilt('matchCard');
+            init3DTilt('playerCard');
+            if(synth) synth.cancel(); // Detener audio si recarga la página
         }
 
-        // Font Size Adjuster
-        let fontLevel = 0;
-        function changeFontSize(dir) {
-            const body = document.getElementById('article-body');
-            const copete = document.getElementById('copete-text');
-            if (dir === 1 && fontLevel < 3) fontLevel++;
-            else if (dir === -1 && fontLevel > -2) fontLevel--;
+        // 4. Lógica Real del Sintetizador de Voz (Web Speech API)
+        let synth = window.speechSynthesis;
+        let utterance = null;
+        let isPlaying = false;
+        let waveInterval;
 
-            const baseBody = 1.125; // 18px
-            const baseCopete = 1.25; // 20px
-            body.style.fontSize = `${baseBody + (fontLevel * 0.1)}rem`;
-            copete.style.fontSize = `${baseCopete + (fontLevel * 0.1)}rem`;
-            showToast(`Texto: ${fontLevel > 0 ? '+' : ''}${fontLevel}`);
+        function getTextToRead() {
+            const title = document.getElementById('articleTitle').innerText;
+            const copete = document.getElementById('articleCopete').innerText;
+            // Unir todos los párrafos de texto
+            const paragraphs = Array.from(document.querySelectorAll('.article-paragraph'))
+                                    .map(p => p.innerText).join('. ');
+            return `${title}. ${copete}. ${paragraphs}`;
         }
 
-        // Toast Helper
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
+        function toggleAudio() {
+            if (!synth) {
+                // Mensaje en pantalla si el navegador no soporta la API
+                document.getElementById('audioStatusTitle').innerText = "Tu navegador no soporta audio";
+                return;
+            }
+
+            const playIcon = document.getElementById('playIcon');
+            const audioStatusTitle = document.getElementById('audioStatusTitle');
+            const progressBar = document.getElementById('audioProgress');
+
+            if (synth.speaking && !synth.paused && isPlaying) {
+                // Pausar
+                synth.pause();
+                isPlaying = false;
+                playIcon.className = 'fa-solid fa-play ml-1';
+                audioStatusTitle.innerText = "Lectura en pausa";
+                stopWaveAnimation();
+            } else if (synth.paused && !isPlaying) {
+                // Reanudar
+                synth.resume();
+                isPlaying = true;
+                playIcon.className = 'fa-solid fa-pause';
+                audioStatusTitle.innerText = "Reproduciendo crónica...";
+                animateWavesRandomly();
+            } else {
+                // Iniciar desde cero
+                synth.cancel(); // Matar proceso anterior por si acaso
+                const text = getTextToRead();
+                utterance = new SpeechSynthesisUtterance(text);
+                
+                // Configurar voz (Intenta agarrar español)
+                utterance.lang = 'es-ES'; 
+                utterance.rate = 0.95; // Velocidad un poco más lenta y agradable
+                utterance.pitch = 1;
+
+                // Eventos del Audio
+                utterance.onstart = () => {
+                    isPlaying = true;
+                    playIcon.className = 'fa-solid fa-pause';
+                    audioStatusTitle.innerText = "Reproduciendo crónica...";
+                    animateWavesRandomly();
+                    progressBar.style.width = '0%';
+                };
+
+                // Calcular el progreso midiendo qué palabra se está leyendo
+                utterance.onboundary = (event) => {
+                    if (event.name === 'word') {
+                        const textLength = text.length;
+                        const percent = (event.charIndex / textLength) * 100;
+                        progressBar.style.width = percent + '%';
+                    }
+                };
+
+                utterance.onend = () => {
+                    isPlaying = false;
+                    playIcon.className = 'fa-solid fa-play ml-1';
+                    audioStatusTitle.innerText = "Narración finalizada";
+                    stopWaveAnimation();
+                    progressBar.style.width = '100%';
+                    // Volver a cero después de 1 segundo
+                    setTimeout(() => progressBar.style.width = '0%', 1500);
+                };
+
+                utterance.onerror = (e) => {
+                    console.error("Error en la síntesis de voz", e);
+                    isPlaying = false;
+                    playIcon.className = 'fa-solid fa-play ml-1';
+                    audioStatusTitle.innerText = "Error al reproducir";
+                    stopWaveAnimation();
+                };
+
+                synth.speak(utterance);
+            }
         }
 
-        // Share Utilities
-        function copyArticleLink() {
+        // Animación visual del ecualizador
+        function animateWavesRandomly() {
+            if (waveInterval) clearInterval(waveInterval);
+            waveInterval = setInterval(() => {
+                for (let i = 1; i <= 10; i++) {
+                    const wave = document.getElementById('wave' + i);
+                    if (wave) {
+                        const randomHeight = Math.floor(Math.random() * 80) + 15;
+                        wave.style.height = randomHeight + '%';
+                        wave.style.backgroundColor = '#d97706'; // Color naranja activo
+                    }
+                }
+            }, 150);
+        }
+
+        function stopWaveAnimation() {
+            if (waveInterval) clearInterval(waveInterval);
+            const heights = [20, 40, 80, 50, 90, 30, 70, 40, 85, 25];
+            for (let i = 1; i <= 10; i++) {
+                const wave = document.getElementById('wave' + i);
+                if (wave) {
+                    wave.style.height = heights[i-1] + '%';
+                    wave.style.backgroundColor = ''; // Restaura tema CSS
+                }
+            }
+        }
+
+        // 5. Utilidades para Compartir Links
+        function copyToClipboard() {
             const dummy = document.createElement('input');
             document.body.appendChild(dummy);
             dummy.value = window.location.href;
             dummy.select();
             document.execCommand('copy');
             document.body.removeChild(dummy);
-            showToast('Enlace copiado');
+
+            showShareFeedback('¡Enlace copiado al portapapeles!');
         }
 
-        function shareWhatsApp() {
-            const text = encodeURIComponent('Leve sismo se percibió en Artigas sin provocar daños - Redacción Enzo Román (MercuryNoticias): ' + window.location.href);
-            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        function simulateShare(platform) {
+            showShareFeedback(`¡Compartiendo nota de Antonio Minguta en ${platform}!`);
         }
 
-        function shareTwitter() {
-            const text = encodeURIComponent('Leve sismo de 3,0 M en Artigas sin provocar daños. Reporte de Enzo Román para MercuryNoticias: ');
-            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(window.location.href)}`, '_blank');
-        }
-
-        // Text To Speech
-        let isSpeaking = false;
-        let synth = window.speechSynthesis;
-        function toggleTextToSpeech() {
-            const label = document.getElementById('tts-label');
-            const icon = document.getElementById('tts-icon');
-
-            if (!('speechSynthesis' in window)) {
-                showToast('Síntesis de voz no soportada');
-                return;
-            }
-
-            if (isSpeaking) {
-                synth.cancel();
-                isSpeaking = false;
-                label.textContent = 'Escuchar';
-                icon.className = 'fa-solid fa-volume-high';
-            } else {
-                const text = "Leve sismo se percibió en Artigas sin provocar daños. Redacción Enzo Román. " + 
-                             document.getElementById('copete-text').innerText + ". " + 
-                             document.getElementById('article-body').innerText;
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'es-ES';
-                utterance.rate = 0.95;
-                utterance.onend = () => {
-                    isSpeaking = false;
-                    label.textContent = 'Escuchar';
-                    icon.className = 'fa-solid fa-volume-high';
-                };
-                synth.speak(utterance);
-                isSpeaking = true;
-                label.textContent = 'Pausar';
-                icon.className = 'fa-solid fa-pause';
-                showToast('Reproduciendo audio...');
+        function showShareFeedback(message) {
+            const feedback = document.getElementById('shareFeedback');
+            if (feedback) {
+                feedback.innerText = message;
+                feedback.classList.remove('opacity-0');
+                feedback.classList.add('opacity-100');
+                setTimeout(() => {
+                    feedback.classList.add('opacity-0');
+                    feedback.classList.remove('opacity-100');
+                }, 3000);
             }
         }
-
-        // Three.js Minimal Globe Setup
-        let scene, camera, renderer, globe, pulseRing;
-        let isDragging = false;
-        let previousMousePosition = { x: 0, y: 0 };
-
-        function initGlobe() {
-            const canvas = document.getElementById('globe-canvas');
-            if (!canvas) return;
-
-            const width = canvas.clientWidth;
-            const height = canvas.clientHeight;
-
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-            camera.position.z = 14;
-
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            // Minimal Sphere Wireframe
-            const geometry = new THREE.SphereGeometry(4.5, 24, 24);
-            const material = new THREE.MeshBasicMaterial({
-                color: 0x52525b,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.35
-            });
-            globe = new THREE.Mesh(geometry, material);
-            scene.add(globe);
-
-            // Core Solid Sphere
-            const coreGeom = new THREE.SphereGeometry(4.4, 24, 24);
-            const coreMat = new THREE.MeshBasicMaterial({ color: 0x18181b });
-            const core = new THREE.Mesh(coreGeom, coreMat);
-            globe.add(core);
-
-            // Epicenter Point (Artigas Coordinates mapping)
-            const lat = -30.62;
-            const lon = -56.46;
-            const phi = (90 - lat) * (Math.PI / 180);
-            const theta = (lon + 180) * (Math.PI / 180);
-
-            const x = -(4.5 * Math.sin(phi) * Math.cos(theta));
-            const z = (4.5 * Math.sin(phi) * Math.sin(theta));
-            const y = (4.5 * Math.cos(phi));
-
-            const pointGeom = new THREE.SphereGeometry(0.18, 12, 12);
-            const pointMat = new THREE.MeshBasicMaterial({ color: 0xd97706 });
-            const point = new THREE.Mesh(pointGeom, pointMat);
-            point.position.set(x, y, z);
-            globe.add(point);
-
-            // Pulse Ring
-            const ringGeom = new THREE.RingGeometry(0.1, 0.6, 24);
-            const ringMat = new THREE.MeshBasicMaterial({ color: 0xd97706, side: THREE.DoubleSide, transparent: true, opacity: 0.8 });
-            pulseRing = new THREE.Mesh(ringGeom, ringMat);
-            pulseRing.position.set(x * 1.01, y * 1.01, z * 1.01);
-            pulseRing.lookAt(0, 0, 0);
-            globe.add(pulseRing);
-
-            globe.rotation.y = 1.8;
-            globe.rotation.x = 0.4;
-
-            // Mouse Drag Control
-            canvas.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-
-            canvas.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const deltaX = e.clientX - previousMousePosition.x;
-                const deltaY = e.clientY - previousMousePosition.y;
-                globe.rotation.y += deltaX * 0.008;
-                globe.rotation.x += deltaY * 0.008;
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-
-            window.addEventListener('mouseup', () => { isDragging = false; });
-
-            // Touch Control
-            canvas.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    isDragging = true;
-                    previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-                }
-            });
-
-            canvas.addEventListener('touchmove', (e) => {
-                if (!isDragging || e.touches.length !== 1) return;
-                const deltaX = e.touches[0].clientX - previousMousePosition.x;
-                const deltaY = e.touches[0].clientY - previousMousePosition.y;
-                globe.rotation.y += deltaX * 0.008;
-                globe.rotation.x += deltaY * 0.008;
-                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-            });
-
-            canvas.addEventListener('touchend', () => { isDragging = false; });
-
-            window.addEventListener('resize', onResize);
-            animateGlobe();
-        }
-
-        function onResize() {
-            const canvas = document.getElementById('globe-canvas');
-            if (!canvas || !renderer || !camera) return;
-            const width = canvas.clientWidth;
-            const height = canvas.clientHeight;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
-        }
-
-        let pScale = 1;
-        let pGrow = true;
-        function animateGlobe() {
-            requestAnimationFrame(animateGlobe);
-
-            if (!isDragging && globe) {
-                globe.rotation.y += 0.001;
-            }
-
-            if (pulseRing) {
-                if (pGrow) {
-                    pScale += 0.015;
-                    if (pScale >= 2.0) pGrow = false;
-                } else {
-                    pScale -= 0.015;
-                    if (pScale <= 1.0) pGrow = true;
-                }
-                pulseRing.scale.set(pScale, pScale, 1);
-                pulseRing.material.opacity = 1 - (pScale / 2.2);
-            }
-
-            renderer.render(scene, camera);
-        }
-
-        window.onload = function() {
-            initGlobe();
-        };
     </script>
 </body>
 </html>
